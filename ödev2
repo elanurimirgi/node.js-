@@ -1,0 +1,38 @@
+const blogposts = [
+    { name: "blogpost 1", post_id: "post_id 1" },
+    { name: "blogpost 2", post_id: "post_id 2" },
+    { name: "blogpost 3", post_id: "post_id 3" },
+  ];
+  
+  const listblogposts = () => {             //Mevcut blogpostları listeliyoruz.
+    blogposts.map((blogpost) => {
+      console.log(blogpost.name);
+    });
+  };
+  
+  const addblogpost = (newblogpost) => {           //Yeni blogpost ekliyoruz.
+    const promise_new = new Promise( (resolve, reject) => {
+        
+        if (newblogpost){
+            blogposts.push(newblogpost);
+            resolve(blogposts);
+        };
+        
+        reject("Lütfen tekrar deneyin");
+          
+    });
+    return promise_new;
+  };
+  async function newblogpostslist (){           //Hata olup olmama durumuna göre çalışır. 
+    try {
+        addblogpost({ name: "blogpost 4", post_id: "post_id 4" });
+        listblogposts();
+    }catch (error) {
+        console.log(error);
+      }
+    };
+
+  newblogpostslist();
+  
+  
+  
